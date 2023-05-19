@@ -1,0 +1,22 @@
+{
+  "name": "@fflags/types",
+  "version": "0.0.0",
+  "description": "Types for feature flags",
+  "author": "Marcello Thiry <marcello.thiry@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "test": "vitest run"
+  },
+  "type": "module"
+}
