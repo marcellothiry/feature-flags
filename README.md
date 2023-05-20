@@ -41,9 +41,17 @@ npx lerna run build --scope=<package-name>
 npx lerna run test --scope=<package-name>
 ```
 
-### Part 1
+### Part 1 ([v0.0.1](https://github.com/marcellothiry/fflags/releases/tag/v0.0.1))
 
 - Short intro about this project and feature flags
 - Setting the workspace up in a monorepo setup using Lerna.
 - Creating two simple packages to demonstrate how we can link them in our workspace.
 - Using Vitest to implement our initial (very basic) tests.
+
+### Part 2 ([v0.0.2](https://github.com/marcellothiry/fflags/releases/tag/v0.0.2))
+
+- Presentation about the structure to be used (DB and memory)
+- Presentation about how to translate the structures to TypeScript
+- Implementing types and tests
+- Implementing the first version of FFlagsClient class
+
