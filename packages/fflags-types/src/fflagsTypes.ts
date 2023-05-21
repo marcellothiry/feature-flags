@@ -1,5 +1,6 @@
 export type FeatureFlagContent = {
   enabled: boolean
+  value?: unknown
 }
 
 export type FlagName = string

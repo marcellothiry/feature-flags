@@ -39,6 +39,11 @@ export class FFlagsClient {
     return JSON.parse(JSON.stringify(flag)) as FeatureFlagContent;
   }
 
+  isFlagEnabled(flagName: FlagName, userGroupName: UserGroupName): boolean {
+    const flag = this.getFlag(flagName, userGroupName);
+    return !flag ? false : flag.enabled;
+  }
+
   private constructor(options: FeatureFlagsStartingOptions) {
     this.environmentName = options.environmentName;
     this.loader = options.featureFlagsLoader;

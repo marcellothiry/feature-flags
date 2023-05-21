@@ -55,3 +55,11 @@ npx lerna run test --scope=<package-name>
 - Implementing types and tests
 - Implementing the first version of FFlagsClient class
 
+### Part 3 ([v0.0.3](https://github.com/marcellothiry/fflags/releases/tag/v0.0.3))
+
+- Tests for class FFlagsClient
+- Adding utility method isFlagEnabled
+- More tests
+- Adding value to FeatureFlagContent (multivariate feature flags)
+- More tests
+- Publishing with Lerna and Verdaccio
