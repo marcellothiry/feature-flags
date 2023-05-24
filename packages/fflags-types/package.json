@@ -1,6 +1,6 @@
 {
   "name": "@fflags/types",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Types for feature flags",
   "author": "Marcello Thiry <marcello.thiry@gmail.com>",
   "homepage": "",
