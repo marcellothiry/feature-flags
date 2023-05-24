@@ -1,6 +1,13 @@
 import {afterAll, afterEach, beforeAll, beforeEach, describe, expect, test, vi} from 'vitest';
 import {FFlagsClient} from '../src/index.js';
-import {EnvironmentName, FeatureFlags, FlagName, UserGroups} from '@fflags/types';
+import {
+  EnvironmentName,
+  FeatureFlagContent,
+  FeatureFlags,
+  FeatureFlagsSwitchParams,
+  FlagName,
+  UserGroups
+} from '@fflags/types';
 
 describe('FFlagsClient', () => {
   describe('Refresh interval', () => {
@@ -124,6 +131,150 @@ describe('FFlagsClient', () => {
       test('should return false when the flag does not exist', () => {
         const actual = client.isFlagEnabled('flag', 'oldFeatureAccess');
         expect(actual).false;
+      });
+    });
+
+    describe('switching features', () => {
+      describe('getFeature', () => {
+        const newFeature = (a: string, b: number): string => `new ${a}, ${b}`;
+
+        const oldFeature = (a: string, b: number): string => `old ${a}, ${b}`;
+
+        const override = (flag: FeatureFlagContent) =>
+          (f: FeatureFlagContent, a: string, b: number): boolean => {
+            expect(f).eql(flag);
+            return !flag.enabled;
+          };
+
+        test('should return the new feature', () => {
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName: 'flag1',
+            userGroupName: 'newFeatureAccess',
+            on: newFeature,
+            off: oldFeature
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = feature('test', 123);
+          const expected = 'new test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the old feature', () => {
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName: 'flag2',
+            userGroupName: 'oldFeatureAccess',
+            on: oldFeature,
+            off: newFeature
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = feature('test', 123);
+          const expected = 'old test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the old feature (new is override)', () => {
+          const flagName = 'flag1';
+          const userGroupName = 'newFeatureAccess';
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName,
+            userGroupName,
+            on: newFeature,
+            off: oldFeature,
+            override: override(client.getFlag(flagName, userGroupName))
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = feature('test', 123);
+          const expected = 'old test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the new feature (old is override)', () => {
+          const flagName = 'flag2';
+          const userGroupName = 'oldFeatureAccess';
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName,
+            userGroupName,
+            on: oldFeature,
+            off: newFeature,
+            override: override(client.getFlag(flagName, userGroupName))
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = feature('test', 123);
+          const expected = 'new test, 123';
+          expect(actual).eq(expected);
+        });
+      });
+
+      describe('getAsyncFeature', () => {
+        const newFeature = async (a: string, b: number): Promise<string> => `new ${a}, ${b}`;
+
+        const oldFeature = async (a: string, b: number): Promise<string> => `old ${a}, ${b}`;
+
+        const override = (flag: FeatureFlagContent) =>
+          async (f: FeatureFlagContent, a: string, b: number): Promise<boolean> => {
+            expect(f).eql(flag);
+            return new Promise((resolve) => {
+              setTimeout(() => resolve(!flag.enabled), 5);
+            });
+          };
+
+        test('should return the new feature', async () => {
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName: 'flag1',
+            userGroupName: 'newFeatureAccess',
+            on: newFeature,
+            off: oldFeature
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = await feature('test', 123);
+          const expected = 'new test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the old feature', async () => {
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName: 'flag2',
+            userGroupName: 'oldFeatureAccess',
+            on: oldFeature,
+            off: newFeature
+          };
+          const feature = client.getFeature(switchParams);
+          const actual = await feature('test', 123);
+          const expected = 'old test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the old feature (new is override)', async () => {
+          const flagName = 'flag1';
+          const userGroupName = 'newFeatureAccess';
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName,
+            userGroupName,
+            on: newFeature,
+            off: oldFeature,
+            override: override(client.getFlag(flagName, userGroupName))
+          };
+          const feature = client.getAsyncFeature(switchParams);
+          const actual = await feature('test', 123);
+          const expected = 'old test, 123';
+          expect(actual).eq(expected);
+        });
+
+        test('should return the new feature (old is override)', async () => {
+          const flagName = 'flag2';
+          const userGroupName = 'oldFeatureAccess';
+          const switchParams: FeatureFlagsSwitchParams<typeof oldFeature> = {
+            flagName,
+            userGroupName,
+            on: oldFeature,
+            off: newFeature,
+            override: override(client.getFlag(flagName, userGroupName))
+          };
+          const feature = client.getAsyncFeature(switchParams);
+          const actual = await feature('test', 123);
+          const expected = 'new test, 123';
+          expect(actual).eq(expected);
+        });
       });
     });
   });

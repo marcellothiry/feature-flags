@@ -1,9 +1,11 @@
 import {
+  AnyFunction,
   EnvironmentName,
   FeatureFlagContent,
   FeatureFlags,
   FeatureFlagsLoader,
   FeatureFlagsStartingOptions,
+  FeatureFlagsSwitchParams,
   FlagName,
   UserGroupName,
   UserGroups
@@ -42,6 +44,26 @@ export class FFlagsClient {
   isFlagEnabled(flagName: FlagName, userGroupName: UserGroupName): boolean {
     const flag = this.getFlag(flagName, userGroupName);
     return !flag ? false : flag.enabled;
+  }
+
+  getFeature<F extends AnyFunction>(params: FeatureFlagsSwitchParams<F>) {
+    return (...args: Parameters<F>): ReturnType<F> => {
+      const {flagName, userGroupName, on, off, override} = params;
+      const flag = this.getFlag(flagName, userGroupName);
+      if (!flag) return off(...args);
+      const enabled = override ? override(flag, ...args) : flag.enabled;
+      return enabled ? on(...args) : off(...args);
+    };
+  }
+
+  getAsyncFeature<F extends AnyFunction>(params: FeatureFlagsSwitchParams<F>) {
+    return async (...args: Parameters<F>): Promise<ReturnType<F>> => {
+      const {flagName, userGroupName, on, off, override} = params;
+      const flag = this.getFlag(flagName, userGroupName);
+      if (!flag) return off(...args);
+      const enabled = override ? await override(flag, ...args) : flag.enabled;
+      return enabled ? on(...args) : off(...args);
+    };
   }
 
   private constructor(options: FeatureFlagsStartingOptions) {

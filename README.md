@@ -41,21 +41,50 @@ npx lerna run build --scope=<package-name>
 npx lerna run test --scope=<package-name>
 ```
 
-### Part 1 ([v0.0.1](https://github.com/marcellothiry/fflags/releases/tag/v0.0.1))
+### Publishing
+
+Before following these steps, make sure you have your project already pushed to a remote repo (Lerna has options to skip
+git commands as tagging and pushing, but we are not covering this here.
+
+To install Verdaccio globally (take a look at its main page to other options), run the command:
+
+```
+npm install --location=global verdaccio
+```
+
+Now run verdaccio in a terminal. If you are using the default options, it must be running at http://localhost:4873). And
+before using Lerna to publish our packages, run the following commands:
+
+```
+npm adduser --registry http://localhost:4873
+npm config set @fflags:registry http://localhost:4873
+```
+
+Now, you can just run:
+
+```
+npx lerna publish
+```
+
+Choose between the versioning options and confirm. That's it, your packages should be updated in our local registry and
+a new release should appear in your git repository. If you prefer, you can follow this steps at the end of our video
+series part 4.
+
+### Part 1 ([v0.0.1](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.1))
 
 - Short intro about this project and feature flags
 - Setting the workspace up in a monorepo setup using Lerna.
 - Creating two simple packages to demonstrate how we can link them in our workspace.
 - Using Vitest to implement our initial (very basic) tests.
 
-### Part 2 ([v0.0.2](https://github.com/marcellothiry/fflags/releases/tag/v0.0.2))
+### Part 2 ([v0.0.2](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.2))
 
 - Presentation about the structure to be used (DB and memory)
 - Presentation about how to translate the structures to TypeScript
 - Implementing types and tests
 - Implementing the first version of FFlagsClient class
 
-### Part 3 ([v0.0.3](https://github.com/marcellothiry/fflags/releases/tag/v0.0.3))
+### Part 3 ([v0.0.3](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.3))
 
 - Tests for class FFlagsClient
 - Adding utility method isFlagEnabled
@@ -63,3 +92,12 @@ npx lerna run test --scope=<package-name>
 - Adding value to FeatureFlagContent (multivariate feature flags)
 - More tests
 - Publishing with Lerna and Verdaccio
+
+### Part 4 ([v0.0.4](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.4))
+
+- Adding generic types to support the new utility methods in FFlagsClient
+- Adding utility methods to get the feature function to run according to the flag's status (sync and async)
+- Adding new tests for FFlagsClient
+- Adding the ability to override a feature flag
+- More tests
+- Our client class is pretty much finished at the end of this video

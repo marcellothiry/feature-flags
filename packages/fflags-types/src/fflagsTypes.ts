@@ -21,3 +21,22 @@ export type FeatureFlagsStartingOptions = {
   refreshIntervalInSeconds?: number
   featureFlagsLoader: FeatureFlagsLoader
 }
+
+// eslint-disable-next-line
+type AnyArgs = any[]
+
+// eslint-disable-next-line
+export type AnyFunction = (...args: AnyArgs) => any
+
+export type FeatureFunction<Args extends AnyArgs, Result> = (...args: Args) => Result
+
+export type OverrideFunction<F extends AnyFunction> = (flag: FeatureFlagContent, ...args: Parameters<F>) =>
+  boolean | Promise<boolean>
+
+export type FeatureFlagsSwitchParams<F extends AnyFunction> = {
+  flagName: FlagName
+  userGroupName: UserGroupName,
+  on: FeatureFunction<Parameters<F>, ReturnType<F>>
+  off: FeatureFunction<Parameters<F>, ReturnType<F>>
+  override?: OverrideFunction<F>
+}
