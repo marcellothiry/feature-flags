@@ -1,0 +1,38 @@
+{
+  "name": "@fflags/mongo-loader",
+  "version": "0.0.4",
+  "description": "Flag's loader for MongoDB",
+  "author": "Marcello Thiry <marcello.thiry@gmail.com>",
+  "homepage": "https://github.com/marcellothiry/feature-flags#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcellothiry/feature-flags.git"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "test": "vitest run"
+  },
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/marcellothiry/feature-flags/issues"
+  },
+  "dependencies": {
+    "@fflags/types": "*"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^8.12.2"
+  },
+  "peerDependencies": {
+    "mongoose": ">=7.2.1"
+  }
+}
