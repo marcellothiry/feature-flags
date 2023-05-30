@@ -1,6 +1,6 @@
 {
   "name": "@fflags/mongo-loader",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Flag's loader for MongoDB",
   "author": "Marcello Thiry <marcello.thiry@gmail.com>",
   "homepage": "https://github.com/marcellothiry/feature-flags#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/marcellothiry/feature-flags/issues"
   },
   "dependencies": {
-    "@fflags/types": "*"
+    "@fflags/types": "^0.0.5"
   },
   "devDependencies": {
     "mongodb-memory-server": "^8.12.2"

@@ -1,6 +1,6 @@
 {
   "name": "@fflags/client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Client access for feature flags",
   "author": "Marcello Thiry <marcello.thiry@gmail.com>",
   "homepage": "",
@@ -20,6 +20,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@fflags/types": "^0.0.4"
+    "@fflags/types": "^0.0.5"
   }
 }
