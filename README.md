@@ -43,7 +43,7 @@ npx lerna run test --scope=<package-name>
 
 ### Publishing
 
-Before following these steps, make sure you have your project already pushed to a remote repo (Lerna has options to skip
+Before following these steps, make sure you have your project already pushed to a remote repo. Lerna has options to skip
 git commands as tagging and pushing, but we are not covering this here.
 
 To install Verdaccio globally (take a look at its main page to other options), run the command:
@@ -101,3 +101,14 @@ series part 4.
 - Adding the ability to override a feature flag
 - More tests
 - Our client class is pretty much finished at the end of this video
+
+### Part 5 ([v0.0.5](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.5))
+
+- Adding new package (loader for MongoDB).
+- Using [Mongoose](https://mongoosejs.com/) as our ODM (Object Data Modeling) as a peer dependency.
+- Adding and exporting the feature flags Model.
+- Adding the MongoDBLoader class.
+- Adding tests to check our model and loader, using
+  a [MongoDB Memory Server](https://www.npmjs.com/package/mongodb-memory-server).
+- Adding Mongoose as a PeerDependency.
+- Publishing and testing it in another project
