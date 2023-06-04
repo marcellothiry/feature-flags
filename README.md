@@ -1,6 +1,18 @@
 # Feature Flags from Scratch
 
-This is the complementary repository for our video series Implementing Feature Flags from Scratch.
+This is the complementary repository for our video
+series [Implementing Feature Flags from Scratch](https://www.youtube.com/watch?v=73NQuTACyus) (channel
+[@fromDev2Dev](https://www.youtube.com/@fromDev2Dev)).
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/73NQuTACyus/0.jpg)](https://www.youtube.com/watch?v=73NQuTACyus)
+
+* [Part 1](https://www.youtube.com/watch?v=73NQuTACyus)
+* [Part 2](https://www.youtube.com/watch?v=EGdYfnhzni4)
+* [Part 3](https://www.youtube.com/watch?v=p6cKvQY6zMY)
+* Part 4 (to be released)
+* Part 5 (to be released)
+* Part 6 (to be released)
+
 Our goal is to develop a complete solution (minus the front-end, at least for now) to manage and use Feature Flags (also
 known as Feature Toggles) without using any existing frameworks or tools to handle them.
 But we don’t intend to create a new Feature Flags framework or product here (you can, however, use it depending on your
@@ -111,4 +123,3 @@ series part 4.
 - Adding tests to check our model and loader, using
   a [MongoDB Memory Server](https://www.npmjs.com/package/mongodb-memory-server).
 - Adding Mongoose as a PeerDependency.
-- Publishing and testing it in another project
