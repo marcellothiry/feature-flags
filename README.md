@@ -9,8 +9,8 @@ series [Implementing Feature Flags from Scratch](https://www.youtube.com/watch?v
 * [Part 1](https://www.youtube.com/watch?v=73NQuTACyus)
 * [Part 2](https://www.youtube.com/watch?v=EGdYfnhzni4)
 * [Part 3](https://www.youtube.com/watch?v=p6cKvQY6zMY)
-* Part 4 (to be released)
-* Part 5 (to be released)
+* [Part 4](https://www.youtube.com/watch?v=c_J7BNOobgI)
+* [Part 5](https://www.youtube.com/watch?v=91V5bL-O4Os)
 * Part 6 (to be released)
 
 Our goal is to develop a complete solution (minus the front-end, at least for now) to manage and use Feature Flags (also
