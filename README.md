@@ -4,7 +4,7 @@ This is the complementary repository for our video
 series [Implementing Feature Flags from Scratch](https://www.youtube.com/watch?v=73NQuTACyus) (channel
 [@fromDev2Dev](https://www.youtube.com/@fromDev2Dev)).
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/73NQuTACyus/0.jpg)](https://www.youtube.com/watch?v=73NQuTACyus)
+[![Feature Flags from Scratch Series](https://img.youtube.com/vi/73NQuTACyus/0.jpg)](https://www.youtube.com/watch?v=73NQuTACyus)
 
 * [Part 1](https://www.youtube.com/watch?v=73NQuTACyus)
 * [Part 2](https://www.youtube.com/watch?v=EGdYfnhzni4)
@@ -46,7 +46,7 @@ npx lerna run build
 npx lerna run test
 ```
 
-If you want to test or build a specific package, you can use the option `--scope`:
+To test or build a specific package, the option `--scope` can be used:
 
 ```
 npx lerna run build --scope=<package-name>
@@ -55,32 +55,31 @@ npx lerna run test --scope=<package-name>
 
 ### Publishing
 
-Before following these steps, make sure you have your project already pushed to a remote repo. Lerna has options to skip
+Before following these steps, the remote repository must already exist. Lerna has options to skip
 git commands as tagging and pushing, but we are not covering this here.
 
-To install Verdaccio globally (take a look at its main page to other options), run the command:
+To install Verdaccio globally (look at its main page to other options), run the command:
 
 ```
 npm install --location=global verdaccio
 ```
 
-Now run verdaccio in a terminal. If you are using the default options, it must be running at http://localhost:4873). And
-before using Lerna to publish our packages, run the following commands:
+Now run verdaccio in a terminal. If the default options are being used, it must be running at http://localhost:4873).
+Before using Lerna to publish the packages, run the following commands:
 
 ```
 npm adduser --registry http://localhost:4873
 npm config set @fflags:registry http://localhost:4873
 ```
 
-Now, you can just run:
+Now, just run:
 
 ```
 npx lerna publish
 ```
 
-Choose between the versioning options and confirm. That's it, your packages should be updated in our local registry and
-a new release should appear in your git repository. If you prefer, you can follow this steps at the end of our video
-series part 4.
+Choose between the versioning options and confirm. That's it, the packages should be updated in the local registry and
+a new release should appear in the git repository. We have this steps explained at the end of our video series part 4.
 
 ### Part 1 ([v0.0.1](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.1))
 

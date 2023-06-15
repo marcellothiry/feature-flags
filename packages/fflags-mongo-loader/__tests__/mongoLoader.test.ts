@@ -1,25 +1,11 @@
-import {afterAll, beforeAll, describe, expect, test} from 'vitest';
-import {MongoMemoryServer} from 'mongodb-memory-server';
-import * as mongoose from 'mongoose';
+import {describe, expect, test} from 'vitest';
 import {FeatureFlags, UserGroups} from '@fflags/types';
 import {MongoDBLoader} from '../src/index.js';
-import {mockedFeatureFlagsInDB, populateMockDB} from './featureFlags.mock.js';
+import {mockedFeatureFlagsInDB} from './featureFlags.mock.js';
+import {useMockedDB} from './useMockedDB.mock.js';
 
 describe('MongoDBLoader', async () => {
-  let mongoServer: MongoMemoryServer;
-
-  beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create();
-    await mongoose.connect(mongoServer.getUri());
-    await populateMockDB();
-  });
-
-  afterAll(async () => {
-    await mongoose.disconnect();
-    if (mongoServer) {
-      await mongoServer.stop();
-    }
-  });
+  useMockedDB();
 
   const runGroupTest = (actualGroups: UserGroups, expectedGroups: UserGroups) => {
     expect(actualGroups).toBeDefined();

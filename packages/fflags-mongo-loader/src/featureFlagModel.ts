@@ -8,9 +8,12 @@ export type UserGroupsInDB = {
 }
 
 export type FeatureFlagInDB = {
+  id: string,
   name: FlagName
   description: string
   environments: Map<EnvironmentName, UserGroupsInDB>
+  createdAt: Date
+  updatedAt: Date
 }
 
 const flagContentSchema = new Schema<FeatureFlagContentInDB>(
@@ -35,6 +38,13 @@ const userGroupsSchema = new Schema<UserGroupsInDB>(
   }
 );
 
+const transform = (doc: any, ret: any): FeatureFlagInDB => {
+  ret.id = ret._id.toString();
+  delete ret._id;
+  delete ret.__v;
+  return ret;
+};
+
 const fflagsSchema = new Schema<FeatureFlagInDB>(
   {
     name: {type: String, required: true},
@@ -46,7 +56,8 @@ const fflagsSchema = new Schema<FeatureFlagInDB>(
   },
   {
     _id: true,
-    timestamps: true
+    timestamps: true,
+    toJSON: {transform},
   }
 );
 
