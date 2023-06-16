@@ -47,7 +47,7 @@ const transform = (doc: any, ret: any): FeatureFlagInDB => {
 
 const fflagsSchema = new Schema<FeatureFlagInDB>(
   {
-    name: {type: String, required: true},
+    name: {type: String, unique: true, required: true},
     description: {type: String, required: true},
     environments: {
       type: Map,
