@@ -122,3 +122,13 @@ a new release should appear in the git repository. We have this steps explained 
 - Adding tests to check our model and loader, using
   a [MongoDB Memory Server](https://www.npmjs.com/package/mongodb-memory-server).
 - Adding Mongoose as a PeerDependency.
+
+### Part 6 ([v0.0.7](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.7))
+
+- The tag v0.0.7 is related to the npm packages (the last commit is related to the feature flags service).
+- Creating a Fastify service for the feature flags (/fflags-service).
+- Endpoints to create, update, delete and get Flags.
+- Endpoint to return the flags using the structure to the app cache them in memory.
+- Running MongoDB as a Docker container.
+- Using HTTP Client to implement integration tests (HTTP requests).
+- Adding new package (loader for MongoDB).

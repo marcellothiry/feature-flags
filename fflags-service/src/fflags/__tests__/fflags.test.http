@@ -1,0 +1,67 @@
+### Creates a new flag
+POST http://{{baseUrl}} HTTP/1.1
+Content-Type: application/json
+
+< ./fflag1.json
+
+### Updates flag using its id
+PUT http://{{baseUrl}}/648d2d5c14ca747a5c10dc84
+Content-Type: application/json
+
+{
+  "id": "648d2d5c14ca747a5c10dc84",
+  "name": "flag1",
+  "description": "flag1",
+  "environments": {
+    "staging": {
+      "userGroups": {
+        "newFeatureAccess": {
+          "enabled": true,
+          "value": 200
+        },
+        "oldFeatureAccess": {
+          "enabled": false,
+          "value": 300
+        }
+      }
+    },
+    "production": {
+      "userGroups": {
+        "newFeatureAccess": {
+          "enabled": false,
+          "value": 400
+        },
+        "oldFeatureAccess": {
+          "enabled": true,
+          "value": 500
+        }
+      }
+    }
+  }
+}
+
+### Physically deletes flag using its id
+DELETE http://{{baseUrl}}/648d2d5c14ca747a5c10dc84
+Accept: text/json
+
+> {%
+    client.test("DELETE executed successfully", function () {
+        client.assert(response.status === 204, "Response status is not 204");
+    });
+%}
+
+### Returns flag by its id
+GET http://{{baseUrl}}/648d2e2c14ca747a5c10dc8a
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.body.hasOwnProperty("name"), "Body does not have the field name");
+        client.assert(response.body["name"] === "flag1");
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Returns all flags for caching
+GET http://{{baseUrl}}/caching/staging
+Accept: application/json

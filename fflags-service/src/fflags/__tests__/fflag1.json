@@ -1,0 +1,30 @@
+{
+  "name": "flag1",
+  "description": "flag1",
+  "environments": {
+    "staging": {
+      "userGroups": {
+        "newFeatureAccess": {
+          "enabled": true,
+          "value": 100
+        },
+        "oldFeatureAccess": {
+          "enabled": false,
+          "value": 200
+        }
+      }
+    },
+    "production": {
+      "userGroups": {
+        "newFeatureAccess": {
+          "enabled": false,
+          "value": 300
+        },
+        "oldFeatureAccess": {
+          "enabled": true,
+          "value": 400
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - '0.0.0.0:27017:27017'
+    volumes:
+      - ~/dev/data/mongodb:/data/db
+    logging:
+      driver: "local"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1234
