@@ -1,6 +1,6 @@
 {
   "name": "@fflags/rest-loader",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Feature flags loader for our REST service",
   "author": "Marcello Thiry <marcello.thiry@gmail.com>",
   "homepage": "",
@@ -24,6 +24,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@fflags/types": "^0.0.7"
+    "@fflags/types": "^0.0.8"
   }
 }
