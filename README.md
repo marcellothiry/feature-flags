@@ -11,7 +11,8 @@ series [Implementing Feature Flags from Scratch](https://www.youtube.com/watch?v
 * [Part 3](https://www.youtube.com/watch?v=p6cKvQY6zMY)
 * [Part 4](https://www.youtube.com/watch?v=c_J7BNOobgI)
 * [Part 5](https://www.youtube.com/watch?v=91V5bL-O4Os)
-* Part 6 (to be released)
+* [Part 6](https://www.youtube.com/watch?v=Fyfp0oEWD6w)
+* Part 7: to be released
 
 Our goal is to develop a complete solution (minus the front-end, at least for now) to manage and use Feature Flags (also
 known as Feature Toggles) without using any existing frameworks or tools to handle them.
@@ -131,4 +132,14 @@ a new release should appear in the git repository. We have this steps explained 
 - Endpoint to return the flags using the structure to the app cache them in memory.
 - Running MongoDB as a Docker container.
 - Using HTTP Client to implement integration tests (HTTP requests).
-- Adding new package (loader for MongoDB).
+
+### Part 7 - Final ([v0.0.8](https://github.com/marcellothiry/feature-flags/releases/tag/v0.0.8))
+
+- Adding new package (loader for REST).
+- Consuming the flags service endpoint using the Node.js fetch API.
+- Using Vitest mock features to test the loader.
+- And this is it for this series.
+
+Thanks for staying with me!
+
+And I see you in the next video!

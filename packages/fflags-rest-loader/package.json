@@ -1,0 +1,29 @@
+{
+  "name": "@fflags/rest-loader",
+  "version": "0.0.7",
+  "description": "Feature flags loader for our REST service",
+  "author": "Marcello Thiry <marcello.thiry@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.marcellothiry:marcellothiry/feature-flags.git"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "test": "vitest run"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fflags/types": "^0.0.7"
+  }
+}
